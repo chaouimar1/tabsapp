@@ -7,27 +7,68 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
 
-type Props = {};
-export default class App extends Component<Props> {
+export class Home extends Component {
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+        <Text style={styles.instructions}>let's create a navigation bar</Text>
+        <Button
+          title="Go to Settings"
+          onPress={() => this.props.navigation.navigate('Settings')}
+        />
       </View>
     );
   }
 }
+
+export class Settings extends Component {
+  render() {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.welcome}>Settings page!</Text>
+        <Button
+          title="Go to Home"
+          onPress={() => this.props.navigation.navigate('Home')}
+        />
+      </View>
+    );
+  }
+}
+
+const TabNavigator = createBottomTabNavigator({
+  Home:Home,
+  Settings:Settings
+},
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'Home') {
+          iconName = `logo-codepen`;
+        } else if (routeName === 'Settings') {
+          iconName = `logo-dropbox`;
+        }
+
+        // You can return any component that you like here! We usually use an
+        // icon component from react-native-vector-icons
+        return <Ionicons name={iconName} size={horizontal ? 20 : 25} color={tintColor} />;
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: 'blue',
+      inactiveTintColor: 'grey',
+    },
+  }
+)
+
+export default createAppContainer(TabNavigator);
 
 const styles = StyleSheet.create({
   container: {
