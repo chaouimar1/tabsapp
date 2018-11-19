@@ -11,39 +11,14 @@ import {Platform, StyleSheet, Text, View, Button} from 'react-native';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
-
-export class Home extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>let's create a navigation bar</Text>
-        <Button
-          title="Go to Settings"
-          onPress={() => this.props.navigation.navigate('Settings')}
-        />
-      </View>
-    );
-  }
-}
-
-export class Settings extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Settings page!</Text>
-        <Button
-          title="Go to Home"
-          onPress={() => this.props.navigation.navigate('Home')}
-        />
-      </View>
-    );
-  }
-}
+import { About } from './app/components/component1/component1';
+import { Settings } from './app/components/component2/component2';
+import { Home } from './app/components/component3/component3';
 
 const TabNavigator = createBottomTabNavigator({
   Home:Home,
-  Settings:Settings
+  Settings:Settings,
+  About: About
 },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -51,9 +26,11 @@ const TabNavigator = createBottomTabNavigator({
         const { routeName } = navigation.state;
         let iconName;
         if (routeName === 'Home') {
-          iconName = `logo-codepen`;
+          iconName = `md-calendar`;
         } else if (routeName === 'Settings') {
-          iconName = `logo-dropbox`;
+          iconName = `md-settings`;
+        } else if (routeName === 'About') {
+          iconName = `md-information-circle-outline`;
         }
 
         // You can return any component that you like here! We usually use an
@@ -62,7 +39,7 @@ const TabNavigator = createBottomTabNavigator({
       },
     }),
     tabBarOptions: {
-      activeTintColor: 'blue',
+      activeTintColor: 'dodgerblue',
       inactiveTintColor: 'grey',
     },
   }
