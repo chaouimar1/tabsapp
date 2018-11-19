@@ -5,7 +5,8 @@ export class About extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.welcome}>About page!</Text>
+                <Text style={styles.welcome}>Find this starter project in link below!</Text>
+                <Text style={styles.instructions}>https://github.com/chaouimar1/tabsapp</Text>
                 <Button
                     title="Go to Home"
                     onPress={() => this.props.navigation.navigate('Home')}

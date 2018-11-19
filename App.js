@@ -16,28 +16,37 @@ import { Settings } from './app/components/component2/component2';
 import { Home } from './app/components/component3/component3';
 
 const TabNavigator = createBottomTabNavigator({
-  Home:Home,
-  Settings:Settings,
-  About: About
+  Home: {
+    screen:Home,
+    navigationOptions:{
+      tabBarLabel:'My Home',
+      tabBarIcon: ({ focused, horizontal, tintColor}) => (
+        <Ionicons name="md-calendar" size={horizontal ? 20 : 25} color={tintColor} />
+      )
+    }
+  },
+  Settings: {
+    screen:Settings,
+    navigationOptions: {
+      tabBarLabel: 'My Settings',
+      tabBarIcon: ({ focused, horizontal, tintColor }) => (
+        <Ionicons name="md-settings" size={horizontal ? 20 : 25} color={tintColor} />
+      )
+    }
+  },
+  About: {
+    screen: About,
+    navigationOptions: {
+      tabBarLabel: 'About me',
+      tabBarIcon: ({ focused, horizontal, tintColor }) => (
+        <Ionicons name="md-information-circle-outline" size={horizontal ? 20 : 25} color={tintColor} />
+      )
+    }
+  }
 },
   {
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        const { routeName } = navigation.state;
-        let iconName;
-        if (routeName === 'Home') {
-          iconName = `md-calendar`;
-        } else if (routeName === 'Settings') {
-          iconName = `md-settings`;
-        } else if (routeName === 'About') {
-          iconName = `md-information-circle-outline`;
-        }
-
-        // You can return any component that you like here! We usually use an
-        // icon component from react-native-vector-icons
-        return <Ionicons name={iconName} size={horizontal ? 20 : 25} color={tintColor} />;
-      },
-    }),
+    //initialRouteName:'Settings',
+    //order:['Home','About','Settings'],
     tabBarOptions: {
       activeTintColor: 'dodgerblue',
       inactiveTintColor: 'grey',
@@ -46,22 +55,3 @@ const TabNavigator = createBottomTabNavigator({
 )
 
 export default createAppContainer(TabNavigator);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
