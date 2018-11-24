@@ -14,6 +14,10 @@ export class Home extends Component {
         Linking.openURL("mailto: chaoui.mar2@gmail.com?subject=abcdefg&body=body")
     }
 
+    openmeruc() {
+        Linking.openURL("http://www.meruc.com")
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -38,6 +42,13 @@ export class Home extends Component {
                         this.mailto();
                     }}>
                     <Text>send mail</Text>
+                </TouchableHighlight>
+
+                <TouchableHighlight
+                    onPress={() => {
+                        this.openmeruc();
+                    }}>
+                    <Text>openmeruc</Text>
                 </TouchableHighlight>
                 <Text style={styles.welcome}>Welcome to React Native!</Text>
                 <Text style={styles.instructions}>let's create a navigation bar</Text>
