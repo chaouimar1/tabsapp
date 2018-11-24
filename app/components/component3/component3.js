@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View, Button, Modal, TouchableHighlight, Linking } from 'react-native';
+import Share from 'react-native-share';
 
 export class Home extends Component {
     state = {
         modalVisible: false,
     };
+
+    shareapp() {
+        Share.open({
+            title: 'Share viaaa',
+            url: 'http://www.google.com',
+            message: 'this is a message to share',
+        });
+    }
 
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
@@ -49,6 +58,13 @@ export class Home extends Component {
                         this.openmeruc();
                     }}>
                     <Text>openmeruc</Text>
+                </TouchableHighlight>
+
+                <TouchableHighlight
+                    onPress={() => {
+                        this.shareapp();
+                    }}>
+                    <Text>share app</Text>
                 </TouchableHighlight>
                 <Text style={styles.welcome}>Welcome to React Native!</Text>
                 <Text style={styles.instructions}>let's create a navigation bar</Text>
