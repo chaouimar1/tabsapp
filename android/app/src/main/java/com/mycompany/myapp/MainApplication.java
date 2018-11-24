@@ -1,4 +1,4 @@
-package com.tabsapp;
+package com.mycompany.myapp;
 
 import android.app.Application;
 
