@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View, Button, Modal, TouchableHighlight, Alert } from 'react-native';
+import { Platform, StyleSheet, Text, View, Button, Modal, TouchableHighlight, Linking } from 'react-native';
 
 export class Home extends Component {
     state = {
@@ -8,6 +8,10 @@ export class Home extends Component {
 
     setModalVisible(visible) {
         this.setState({ modalVisible: visible });
+    }
+
+    mailto() {
+        Linking.openURL("mailto: chaoui.mar2@gmail.com?subject=abcdefg&body=body")
     }
 
     render() {
@@ -28,6 +32,12 @@ export class Home extends Component {
                         this.setModalVisible(true);
                     }}>
                     <Text>Show Modal</Text>
+                </TouchableHighlight>
+                <TouchableHighlight
+                    onPress={() => {
+                        this.mailto();
+                    }}>
+                    <Text>send mail</Text>
                 </TouchableHighlight>
                 <Text style={styles.welcome}>Welcome to React Native!</Text>
                 <Text style={styles.instructions}>let's create a navigation bar</Text>
