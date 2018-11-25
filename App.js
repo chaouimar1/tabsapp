@@ -45,7 +45,7 @@ const TabNavigator = createBottomTabNavigator({
   }
 },
   {
-    //initialRouteName:'Settings',
+    initialRouteName:'Settings',
     //order:['Home','About','Settings'],
     tabBarOptions: {
       activeTintColor: 'dodgerblue',
