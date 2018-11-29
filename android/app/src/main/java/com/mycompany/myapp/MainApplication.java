@@ -13,6 +13,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 import org.pgsqlite.SQLitePluginPackage;
+import com.wix.reactnativenotifications.RNNotificationsPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -28,7 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
           new SQLitePluginPackage(),
           new MainReactPackage(),
             new RNSharePackage(),
-            new VectorIconsPackage()
+            new VectorIconsPackage(),
+            new RNNotificationsPackage(MainApplication.this)
       );
     }
 
